@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace CollectionConsole
 {
+    [Serializable]
     public class DictionaryData
     {
         //PROPERTY
@@ -52,6 +58,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 if (Dictionary.Count == 0)
                 {
                     Console.WriteLine("Dictionary is currently empty");
@@ -90,6 +97,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 if (Dictionary.Count == 0)
                 {
                     Console.WriteLine("Dictionary is already clear");
@@ -138,6 +146,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 DisplayDictionary();
                 Console.WriteLine("Enter the Key you would like to add (Caution: A dictionary cannot hold duplicate keys) OR Hit enter to return to the Menu");
                 var key = Console.ReadLine();
@@ -187,6 +196,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 if (Dictionary.Count == 0)
                 {
                     Console.WriteLine("Dictionary is already empty");
@@ -242,6 +252,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 if (Dictionary.Count == 0)
                 {
                     Console.WriteLine("Dictionary is currently empty");
@@ -310,6 +321,18 @@ namespace CollectionConsole
 
             }
         }
-       
+        public void Serialization()
+        {
+            Console.Clear();
+            Console.WriteLine("Serializing");
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(@"C:\Users\chris\Serialize\dictionary.txt", FileMode.Create, FileAccess.Write);
+
+            formatter.Serialize(stream, Dictionary);
+            stream.Close();
+            Console.WriteLine("Serialized....returning to menu");
+            Return();
+        }
+
     }
 }

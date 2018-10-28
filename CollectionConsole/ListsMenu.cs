@@ -14,7 +14,7 @@ namespace CollectionConsole
         {
             try
             {
-
+                Console.Clear();
                 Console.WriteLine("LIST MENU");
                 Console.WriteLine("1. Add an item to the end of the list");
                 Console.WriteLine("2. Modify an item");
@@ -51,6 +51,9 @@ namespace CollectionConsole
                     case "8":
                         Program.Menu();
                         break;
+                    //case "9":
+                    //    listing.Serialization();
+                    //    break;
                     default:
                         ListMenu();
                         break;

@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace CollectionConsole
 {
+    [Serializable]
     public class QueueData
     {
         public Queue<object> Queue { get; set; } //PROPERTY
@@ -23,6 +29,7 @@ namespace CollectionConsole
 
         public void Enqueue() //ADDS ITEM TO QUEUE
         {
+            Console.Clear();
             try
             {
                 DisplayQueue();
@@ -65,6 +72,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 if (Queue.Count == 0)
                 {
                     Console.WriteLine("Queue is already empty...");
@@ -159,6 +167,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 if (Queue.Count == 0)
                 {
                     Console.WriteLine("Queue is Empty");
@@ -187,5 +196,18 @@ namespace CollectionConsole
                 Return();
             }
         }
+        public void Serialization()
+        {
+            Console.Clear();
+            Console.WriteLine("Serializing");
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(@"C:\Users\chris\Serialize\queue.txt", FileMode.Create, FileAccess.Write);
+
+            formatter.Serialize(stream, Queue);
+            stream.Close();
+            Console.WriteLine("Serialized....returning to menu");
+            Return();
+        }
+
     }
 }

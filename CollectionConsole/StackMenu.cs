@@ -14,7 +14,8 @@ namespace CollectionConsole
         {
             try
             {
-
+                
+                Console.Clear();
                 Console.WriteLine("STACK MENU");
                 Console.WriteLine("1. Add an item to the stack");
                 Console.WriteLine("2. Remove an item from the stack");
@@ -39,6 +40,9 @@ namespace CollectionConsole
                     case "5":
                         Program.Menu();
                         break;
+                    //case "6":
+                    //    stacking.Serialization();
+                    //    break;
                     default:
                         StackMenu();
                         break;

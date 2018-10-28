@@ -14,7 +14,7 @@ namespace CollectionConsole
         {
             try
             {
-
+                Console.Clear();
                 Console.WriteLine("DICTIONARY MENU");
                 Console.WriteLine("1. Add an Key Value Pair (Caution: Dictionary cannot have duplicate keys)");
                 Console.WriteLine("2. Modify a Value for a Key");
@@ -43,6 +43,9 @@ namespace CollectionConsole
                     case "6":
                         Program.Menu();
                         break;
+                    //case "7":
+                    //    diction.Serialization();
+                    //    break;
                     default:
                         DictionaryMenu();
                         break;

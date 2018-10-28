@@ -15,7 +15,7 @@ namespace CollectionConsole
         {
             try
             {
-
+                Console.Clear();
                 Console.WriteLine("HASHTABLE MENU");
                 Console.WriteLine("1. Add a new Key Value Pair");
                 Console.WriteLine("2. Modify a Value for a Key");
@@ -40,6 +40,9 @@ namespace CollectionConsole
                     case "5":
                         Program.Menu();
                         break;
+                    //case "6":
+                    //    hashdata.Serialization();
+                    //    break;
                     default:
                         HashMenu();
                         break;

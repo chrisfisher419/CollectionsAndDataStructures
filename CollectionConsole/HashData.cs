@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 using System.Collections;
 
 namespace CollectionConsole
 {
+    [Serializable]
     public class HashData
     {
         Hashtable Hash{ get; set; } //PROPERTY
@@ -26,6 +32,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 if (Hash.Count == 0)
                 {
                     Console.WriteLine("Table is currently empty");
@@ -86,6 +93,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 DisplayTable();
                 Console.WriteLine("Enter the key you would like to add. (Caution: A Hash Table CANNOT null keys or values) OR hit enter to return to the menu");
                 var key = Console.ReadLine();
@@ -136,6 +144,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 if (Hash.Count == 0)
                 {
                     Console.WriteLine("Hash table is already empty");
@@ -191,6 +200,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 if (Hash.Count == 0)
                 {
                     Console.WriteLine("Hash table is currently empty");
@@ -258,6 +268,18 @@ namespace CollectionConsole
                 Return();
 
             }
+        }
+        public void Serialization()
+        {
+            Console.Clear();
+            Console.WriteLine("Serializing");
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(@"C:\Users\chris\Serialize\hash.txt", FileMode.Create, FileAccess.Write);
+
+            formatter.Serialize(stream, Hash);
+            stream.Close();
+            Console.WriteLine("Serialized....returning to menu");
+            Return();
         }
 
     }

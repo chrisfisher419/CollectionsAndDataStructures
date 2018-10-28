@@ -25,7 +25,7 @@ namespace CollectionConsole
                 DictionarysMenu dictionarymenu = new DictionarysMenu();
                 HashsMenu hashmenu = new HashsMenu();
 
-
+                Console.Clear();
                 Console.WriteLine("What would you like to work with?");
                 Console.WriteLine("1. Lists");
                 Console.WriteLine("2. Stacks");

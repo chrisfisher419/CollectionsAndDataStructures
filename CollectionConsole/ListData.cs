@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace CollectionConsole
 {
+    [Serializable]
     public class ListData //MAINTAINS CLASS LOGIC
     {
         //PROPERTY 
@@ -62,6 +67,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 if (List.Count == 0)
                 {
                     Console.WriteLine("List is currently empty");
@@ -94,6 +100,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 if (List.Count == 0)
                 {
                     Console.WriteLine("List is empty...");
@@ -124,6 +131,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 DisplayList();
                 Console.WriteLine("Enter the value that you want to insert...");
                 var input = Console.ReadLine();
@@ -172,6 +180,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 if (List.Count == 0)
                 {
                     Console.WriteLine("List is empty...");
@@ -203,6 +212,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 if (List.Count == 0)
                 {
                     Console.WriteLine("List is empty...");
@@ -253,8 +263,10 @@ namespace CollectionConsole
         //ADDS AN ITEM TO THE END OF THE LIST
         public void AddList()
         {
+            
             try
             {
+                Console.Clear();
                 DisplayList(); //DISPLAYS THE LIST BEFORE HAND
                 Console.WriteLine("What would you like to enter? If you would like to return, simply hit enter");
                 var input = Console.ReadLine(); //TAKES USER INPUT
@@ -292,6 +304,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 if (List.Count == 0)
                 {
                     Console.WriteLine("List is empty...");
@@ -348,6 +361,18 @@ namespace CollectionConsole
             
 
 
+        }
+        public void Serialization()
+        {
+            Console.Clear();
+            Console.WriteLine("Serializing");
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(@"C:\Users\chris\Serialize\list.txt", FileMode.Create, FileAccess.Write);
+
+            formatter.Serialize(stream, List);
+            stream.Close();
+            Console.WriteLine("Serialized....returning to menu");
+            Return();
         }
 
 

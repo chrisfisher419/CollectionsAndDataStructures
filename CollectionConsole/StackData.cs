@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace CollectionConsole
 {
-    class StackData
+    [Serializable]
+   public class StackData
     {
         Stack<object> Stack { get; set; } //PROPERTY
 
@@ -23,9 +29,10 @@ namespace CollectionConsole
 
         public void RemoveStack() //REMOVES LAST ITEM IN STACK
         {
+            
             try
             {
-             
+                Console.Clear();
                 if (Stack.Count == 0)
                 {
                     Console.WriteLine("Stack is already empty...");
@@ -82,8 +89,10 @@ namespace CollectionConsole
 
         public void AddStack() //ADDS ITEM TO TOP OF STACK
         {
+            
             try
             {
+                Console.Clear();
                 DisplayStack();
                 Console.WriteLine("What value do you want to push to the stack? If you would like to return, simply hit enter");
                 var input = Console.ReadLine();
@@ -120,6 +129,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 if (Stack.Count == 0)
                 {
                     Console.WriteLine("Stack is already empty...");
@@ -193,6 +203,7 @@ namespace CollectionConsole
         {
             try
             {
+                Console.Clear();
                 if (Stack.Count == 0)
                 {
                     Console.WriteLine("Stack is currently empty");
@@ -224,6 +235,18 @@ namespace CollectionConsole
 
 
 
+        }
+        public void Serialization()
+        {
+            Console.Clear();
+            Console.WriteLine("Serializing");
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(@"C:\Users\chris\Serialize\stack.txt", FileMode.Create, FileAccess.Write);
+
+            formatter.Serialize(stream, Stack);
+            stream.Close();
+            Console.WriteLine("Serialized....returning to menu");
+            Return();
         }
     }
 }
